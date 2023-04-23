@@ -15,3 +15,9 @@ import VegaLite exposing (..)
 # THE USE OF DATA VISUALISATION TO ANALYSE HOLLYWOOD TICKET SALES AND MOVIE GENRES TO DETERMINE TRENDS AND MOVIE POPULARITY
 
 ###
+
+```elm {l=hidden}
+ticketData : Data
+ticketData =
+    dataFromUrl "https://github.com/ZahirUddin13/Individual-Project/blob/main/Data%20and%20Resources/AnnualTicketSales.csv"
+```
