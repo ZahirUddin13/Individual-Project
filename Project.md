@@ -21,3 +21,22 @@ ticketData : Data
 ticketData =
     dataFromUrl "https://github.com/ZahirUddin13/Individual-Project/blob/main/Data%20and%20Resources/AnnualTicketSales.csv"
 ```
+
+```elm {v}
+ticketSales : Spec
+ticketSales =
+    let
+        enc =
+            encoding
+                << position X [ pName "YEAR", pTemporal ]
+                << position Y [ pName "TICKETS SOLD", pQuant ]
+    in
+    toVegaLite
+        [ width 640
+        , ticketData
+        , enc []
+        , bar [ maColor "crimson" ]
+        ]
+```
+
+###
