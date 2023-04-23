@@ -19,7 +19,7 @@ import VegaLite exposing (..)
 ```elm {l=hidden}
 ticketData : Data
 ticketData =
-    dataFromUrl "https://github.com/ZahirUddin13/Individual-Project/blob/main/Data%20and%20Resources/AnnualTicketSales.csv"
+    dataFromUrl "https://zahiruddin13.github.io/webData/AnnualTicketSales1.csv" []
 ```
 
 ```elm {v}
@@ -35,7 +35,7 @@ ticketSales =
         [ width 640
         , ticketData
         , enc []
-        , bar [ maColor "crimson" ]
+        , bar []
         ]
 ```
 
