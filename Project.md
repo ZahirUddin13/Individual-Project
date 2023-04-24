@@ -38,7 +38,9 @@ ticketSales =
         [ width 600
         , ticketData
         , enc []
-        , bar [ maTooltip ttEncoding, maColor "crimson", maWidth 10 ]
+
+        ---, circle [ maColor "crimson" ]---
+        , line [ maTooltip ttEncoding, maColor "crimson", maWidth 10 ]
         ]
 ```
 
