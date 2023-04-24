@@ -12,9 +12,7 @@ import Tidy exposing (..)
 import VegaLite exposing (..)
 ```
 
-# THE USE OF DATA VISUALISATION TO ANALYSE HOLLYWOOD TICKET SALES AND MOVIE GENRES TO DETERMINE TRENDS AND MOVIE POPULARITY
-
-###
+# The use of Data Visualisation to analyse Hollywood ticket sales and movie gentres to determine trends and movie popularity
 
 ```elm {l=hidden}
 ticketData : Data
@@ -22,20 +20,25 @@ ticketData =
     dataFromUrl "https://zahiruddin13.github.io/webData/AnnualTicketSales1.csv" []
 ```
 
-```elm {v}
+### Ticket sales per year
+
+```elm {v interactive highlight = 13}
 ticketSales : Spec
 ticketSales =
     let
         enc =
             encoding
                 << position X [ pName "YEAR", pTemporal ]
+                -- Takes data from source in the YEAR column --
                 << position Y [ pName "TICKETS SOLD", pQuant ]
+                -- Takes data from source in the TICKETS SOLD column --
+                << tooltips [ [ tName "TICKETS SOLD", tTitle "Tickets Sold" ], [ tName "AVERAGE TICKET PRICE", tTitle "Average Ticket Price" ] ]
     in
     toVegaLite
         [ width 640
         , ticketData
         , enc []
-        , bar []
+        , bar [ maTooltip ttEncoding, maColor "crimson" ]
         ]
 ```
 
