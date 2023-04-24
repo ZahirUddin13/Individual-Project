@@ -22,11 +22,11 @@ ticketData =
 
 ### Ticket sales per year
 
-```elm {v interactive highlight = 13}
-ticketSales : Spec
-ticketSales =
+```elm {v interactive highlight = 13 j}
+ticketSales1 : Spec
+ticketSales1 =
     let
-        enc =
+        enc1 =
             encoding
                 << position X [ pName "YEAR", pTemporal ]
                 -- Takes data from source in the YEAR column --
@@ -37,10 +37,8 @@ ticketSales =
     toVegaLite
         [ width 600
         , ticketData
-        , enc []
-
-        ---, circle [ maColor "crimson" ]---
-        , line [ maTooltip ttEncoding, maColor "crimson", maWidth 10 ]
+        , enc1 []
+        , line [ maTooltip ttEncoding, maColor "crimson", maWidth 30, maPoint (pmMarker [ maColor "red" ]) ]
         ]
 ```
 
