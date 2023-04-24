@@ -35,10 +35,10 @@ ticketSales =
                 << tooltips [ [ tName "TICKETS SOLD", tTitle "Tickets Sold" ], [ tName "AVERAGE TICKET PRICE", tTitle "Average Ticket Price" ] ]
     in
     toVegaLite
-        [ width 640
+        [ width 600
         , ticketData
         , enc []
-        , bar [ maTooltip ttEncoding, maColor "crimson" ]
+        , bar [ maTooltip ttEncoding, maColor "crimson", maWidth 10 ]
         ]
 ```
 
