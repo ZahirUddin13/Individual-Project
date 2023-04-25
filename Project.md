@@ -14,6 +14,20 @@ import VegaLite exposing (..)
 
 # The use of Data Visualisation to analyse Hollywood ticket sales and movie gentres to determine trends and movie popularity
 
+#### Overview
+
+The following interactive document contains visualisations on Hollywood market statistics from 1995 to 2021. It focuses on three different aspects of the Hollywood Market in order to fulfill the objectives of this project.
+
+##### Objectives:
+
+1. Show the trend in growth of the Hollywood industry over the last 25 years.
+2. Show which genres are the most popular created movies.
+3. Display which genres generate the highest revenue and the most success.
+4. The visualizations should include user interaction allowing them to change what statistics are shown, for example: sales, genre, revenue.
+5. New users should be able to easily use the visualisations to make inferences and gain valuable insights from the information.
+
+## The Visualisations
+
 ```elm {l=hidden}
 ticketData : Data
 ticketData =
@@ -21,6 +35,8 @@ ticketData =
 ```
 
 ### Ticket sales per year
+
+This line graph represents the relationship between time and ticket sales, presenting yearly ticket sales statistics. Hovering over the points on the graph allow you to see details of the exact number of tickets and the average prices of tickets in that year.
 
 ```elm {v interactive highlight = 13}
 ticketSales1 : Spec
@@ -42,13 +58,16 @@ ticketSales1 =
         ]
 ```
 
-### Movie Genres and Market Share
-
 ```elm {l=hidden}
 genreData : Data
 genreData =
     dataFromUrl "https://zahiruddin13.github.io/webData/TopGenres1.csv" []
 ```
+
+### Movie Genres and Market Share
+
+This Donut chart shows the top ten genres within the industry since 1995. The areas covered by each genre shows their representative Market Shares.
+Hovering over each of the segments allows you to see details such as the exact Market Share, Number of Movies in each genre and Total Gross revenue.
 
 ```elm {v interactive highlight = 13}
 genreShare : Spec
@@ -76,6 +95,9 @@ genreShare =
 ```
 
 ### Movie Genres and Gross Earnings
+
+This Bar chart once again shows the top ten genres within the industry. It details the relationshiop between each genre and their Total Gross revenue.
+Hovering over each of the segments allows you to see details such as the exact Market Share, Number of Movies in each genre, Total Gross revenue and Average Gross revenue.
 
 ```elm {v interactive highlight = 13}
 genreGross1 : Spec
