@@ -35,7 +35,7 @@ ticketSales1 =
                 << tooltips [ [ tName "TICKETS SOLD", tTitle "Tickets Sold" ], [ tName "AVERAGE TICKET PRICE", tTitle "Average Ticket Price" ] ]
     in
     toVegaLite
-        [ width 600
+        [ width 640
         , ticketData
         , enc1 []
         , line [ maTooltip ttEncoding, maColor "crimson", maWidth 30, maPoint (pmMarker [ maColor "red" ]) ]
@@ -90,7 +90,7 @@ genreGross1 =
                 << tooltips [ [ tName "GENRES", tTitle "Genre" ], [ tName "MARKET SHARE", tTitle "Market Share (%)" ], [ tName "MOVIES", tTitle "Number of Movies" ], [ tName "TOTAL GROSS", tTitle "Total Gross ($)" ], [ tName "AVERAGE GROSS", tTitle "Average Gross ($)" ] ]
     in
     toVegaLite
-        [ width 600
+        [ width 640
         , genreData
         , enc3 []
         , bar [ maTooltip ttEncoding, maColor "green", maWidth 30 ]
