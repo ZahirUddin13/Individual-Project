@@ -22,7 +22,7 @@ ticketData =
 
 ### Ticket sales per year
 
-```elm {v interactive highlight = 13 j}
+```elm {v interactive highlight = 13}
 ticketSales1 : Spec
 ticketSales1 =
     let
@@ -48,4 +48,26 @@ ticketSales1 =
 genreData : Data
 genreData =
     dataFromUrl "https://zahiruddin13.github.io/webData/TopGenres.csv" []
+```
+
+```elm {v interactive highlight = 13}
+genreShare : Spec
+genreShare =
+    let
+        config =
+            configure
+                << configuration (coView [ vicoStroke Nothing ])
+
+        data =
+            dataFromColumns []
+                << dataColumn "GENRES" (strs [ "Adventure", "Action", "Drama", "Comedy", "Thriller/Suspense", "Horror", "Romantic Comedy", "Musical", "Documentary", "Black Comedy" ])
+                << dataColumn "MARKET SHARE" (nums [ 27.14, 20.75, 14.97, 14.17, 8.33, 5.65, 4.41, 1.81, 1.06, 0.92 ])
+
+        enc2 =
+            encoding
+                << position Theta [ pName "MARKET SHARE", pQuant ]
+                << color [ mName "GENRES" ]
+                << tooltips [ [ tName "GENRES", tTitle "Genre" ], [ tName "MARKET SHARE", tTitle "Market Share" ], [ tName "MOVIES", tTitle "Number of Movies" ] ]
+    in
+    toVegaLite [ config [], data [], enc2 [], arc [ maInnerRadius 40 ] ]
 ```
