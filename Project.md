@@ -10,6 +10,10 @@ elm:
 ```elm {l=hidden}
 import Tidy exposing (..)
 import VegaLite exposing (..)
+
+
+
+---Imported Libraries---
 ```
 
 # The use of Data Visualisation to analyse Hollywood ticket sales and movie gentres to determine trends and movie popularity
@@ -32,6 +36,10 @@ The following interactive document contains visualisations on Hollywood market s
 ticketData : Data
 ticketData =
     dataFromUrl "https://zahiruddin13.github.io/webData/AnnualTicketSales1.csv" []
+
+
+
+--- This block of code pulls the ticket sales raw data from the provided url where it is stored.---
 ```
 
 ### Ticket sales per year
@@ -49,12 +57,15 @@ ticketSales1 =
                 << position Y [ pName "TICKETS SOLD", pQuant ]
                 -- Takes data from source in the TICKETS SOLD column --
                 << tooltips [ [ tName "TICKETS SOLD", tTitle "Tickets Sold" ], [ tName "AVERAGE TICKET PRICE", tTitle "Average Ticket Price" ] ]
+
+        --- Encodes interactive tooltips for the graph---
     in
     toVegaLite
+        --- toVegaLite converts the elm-vegalite specifications into a single JSON object that can be passed to Vega-lite for graphics generation.
         [ width 640
         , ticketData
         , enc1 []
-        , line [ maTooltip ttEncoding, maColor "crimson", maWidth 30, maPoint (pmMarker [ maColor "red" ]) ]
+        , line [ maTooltip ttEncoding, maColor "crimson", maWidth 30, maPoint (pmMarker [ maColor "red" ]) ] --- This line formats data into a line graph with a Crimson color and red points. It also enables the tooltips.
         ]
 ```
 
@@ -62,6 +73,10 @@ ticketSales1 =
 genreData : Data
 genreData =
     dataFromUrl "https://zahiruddin13.github.io/webData/TopGenres1.csv" []
+
+
+
+--- This block of code pulls the Top Genre raw data from the provided url where it is stored.---
 ```
 
 ### Movie Genres and Market Share
@@ -77,6 +92,7 @@ genreShare =
             configure
                 << configuration (coView [ vicoStroke Nothing ])
 
+        --- Creates a configuration for this specific visualisation. coView configures the default style and vicoStroke defines the default color.
         data =
             dataFromColumns []
                 << dataColumn "GENRES" (strs [ "Adventure", "Action", "Drama", "Comedy", "Thriller/Suspense", "Horror", "Romantic Comedy", "Musical", "Documentary", "Black Comedy" ])
@@ -85,18 +101,33 @@ genreShare =
                 << dataColumn "TOTAL GROSS" (strs [ "$64,529,536,530", "$49,339,974,493", "$35,586,177,269", "$33,687,992,318", "$19,810,201,102", "$13,430,378,699", "$10,480,124,374", "$4,293,988,317", "$2,519,513,142", "$2,185,433,323" ])
                 << dataColumn "AVERAGE GROSS" (strs [ "$58,556,748", "$44,936,224", "$6,495,013", "$13,932,172", "$16,703,374", "$18,757,512", "$16,635,118", "$21,363,126", "$1,043,277", "$10,260,250" ])
 
+        --- This code allows data to be added manually using dataColumn. This creates lists of specified data. "nums" specifies number data and "strs" specifies strings. The decision to manually include the data for this graph was due to format issues with the data provided in the csv files.
         enc2 =
             encoding
                 << position Theta [ pName "MARKET SHARE", pQuant ]
+                --- Defines the sizes of each segment with the data from MARKET SHARE.
                 << color [ mName "GENRES" ]
+                --- This line ensures that each Genre has a different color.
                 << tooltips [ [ tName "GENRES", tTitle "Genre" ], [ tName "MARKET SHARE", tTitle "Market Share" ], [ tName "MOVIES", tTitle "Number of Movies" ], [ tName "TOTAL GROSS", tTitle "Total Gross" ] ]
+
+        --- Encodes interactive tooltips for the graph---
     in
-    toVegaLite [ config [], data [], enc2 [], arc [ maOuterRadius 400, maInnerRadius 230 ] ]
+    toVegaLite
+        [ --- toVegaLite converts the elm-vegalite specifications into a single JSON object that can be passed to Vega-lite for graphics generation.
+          config []
+        , data []
+        , enc2 []
+        , arc [ maOuterRadius 400, maInnerRadius 230 ]
+        ]
+
+
+
+--- Lines 117-121 formats data into a radial graph with a set Outer Radius size and Inner Radius size. The inner radius defines the hole in the middle, making this a donut chart. This line also enables the tooltips.
 ```
 
 ### Movie Genres and Gross Earnings
 
-This Bar chart once again shows the top ten genres within the industry. It details the relationshiop between each genre and their Total Gross revenue.
+This Bar chart once again shows the top ten genres within the industry. It details the relationship between each genre and their Total Gross revenue.
 Hovering over each of the segments allows you to see details such as the exact Market Share, Number of Movies in each genre, Total Gross revenue and Average Gross revenue.
 
 ```elm {v interactive highlight = 13}
@@ -110,11 +141,18 @@ genreGross1 =
                 << position Y [ pName "TOTAL GROSS", pQuant ]
                 -- Takes data from source in the TOTAL GROSS column --
                 << tooltips [ [ tName "GENRES", tTitle "Genre" ], [ tName "MARKET SHARE", tTitle "Market Share (%)" ], [ tName "MOVIES", tTitle "Number of Movies" ], [ tName "TOTAL GROSS", tTitle "Total Gross ($)" ], [ tName "AVERAGE GROSS", tTitle "Average Gross ($)" ] ]
+
+        --- Encodes interactive tooltips for the graph---
     in
     toVegaLite
+        --- toVegaLite converts the elm-vegalite specifications into a single JSON object that can be passed to Vega-lite for graphics generation.
         [ width 640
         , genreData
         , enc3 []
-        , bar [ maTooltip ttEncoding, maColor "green", maWidth 30 ]
+        , bar [ maTooltip ttEncoding, maColor "green", maWidth 50 ]
         ]
+
+
+
+--- This line formats data into a bar graph with a green color and a set width. It also enables the tooltips.
 ```
