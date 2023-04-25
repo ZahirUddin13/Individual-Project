@@ -69,5 +69,5 @@ genreShare =
                 << color [ mName "GENRES" ]
                 << tooltips [ [ tName "GENRES", tTitle "Genre" ], [ tName "MARKET SHARE", tTitle "Market Share" ], [ tName "MOVIES", tTitle "Number of Movies" ] ]
     in
-    toVegaLite [ config [], data [], enc2 [], arc [ maInnerRadius 40 ] ]
+    toVegaLite [ config [], data [], enc2 [], arc [ maOuterRadius 400, maInnerRadius 230 ] ]
 ```
