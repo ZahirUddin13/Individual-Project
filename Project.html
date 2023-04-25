@@ -1,0 +1,321 @@
+<!DOCTYPE html><html><head>
+      <title>Project</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
+      
+      
+      
+      
+      
+      
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@5/build/vega.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@5/build/vega-lite.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@6/build/vega-embed.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/apache-arrow@4/Arrow.es2015.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-loader-arrow@0.0/build/vega-loader-arrow.min.js"></script>
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  " id="litvis">
+      <h1 class="mume-header" id="the-use-of-data-visualisation-to-analyse-hollywood-ticket-sales-and-movie-gentres-to-determine-trends-and-movie-popularity">The use of Data Visualisation to analyse Hollywood ticket sales and movie gentres to determine trends and movie popularity</h1>
+
+<h4 class="mume-header" id="overview">Overview</h4>
+
+<p>The following interactive document contains visualisations on Hollywood market statistics from 1995 to 2021. It focuses on three different aspects of the Hollywood Market in order to fulfill the objectives of this project.</p>
+<h5 class="mume-header" id="objectives">Objectives:</h5>
+
+<ol>
+<li>Show the trend in growth of the Hollywood industry over the last 25 years.</li>
+<li>Show which genres are the most popular created movies.</li>
+<li>Display which genres generate the highest revenue and the most success.</li>
+<li>The visualizations should include user interaction allowing them to change what statistics are shown, for example: sales, genre, revenue.</li>
+<li>New users should be able to easily use the visualisations to make inferences and gain valuable insights from the information.</li>
+</ol>
+<h2 class="mume-header" id="the-visualisations">The Visualisations</h2>
+
+<h3 class="mume-header" id="ticket-sales-per-year">Ticket sales per year</h3>
+
+<p>This line graph represents the relationship between time and ticket sales, presenting yearly ticket sales statistics. Hovering over the points on the graph allow you to see details of the exact number of tickets and the average prices of tickets in that year.</p>
+<div data-role="litvisOutput" style="display: inline;"><p interactive="true" style="display: inline-block" class="vega-lite"><span style="display: none">{&quot;$schema&quot;:&quot;https://vega.github.io/schema/vega-lite/v5.json&quot;,&quot;width&quot;:640,&quot;data&quot;:{&quot;url&quot;:&quot;https://zahiruddin13.github.io/webData/AnnualTicketSales1.csv&quot;},&quot;encoding&quot;:{&quot;x&quot;:{&quot;field&quot;:&quot;YEAR&quot;,&quot;type&quot;:&quot;temporal&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;TICKETS SOLD&quot;,&quot;type&quot;:&quot;quantitative&quot;},&quot;tooltip&quot;:[{&quot;field&quot;:&quot;TICKETS SOLD&quot;,&quot;title&quot;:&quot;Tickets Sold&quot;},{&quot;field&quot;:&quot;AVERAGE TICKET PRICE&quot;,&quot;title&quot;:&quot;Average Ticket Price&quot;}]},&quot;mark&quot;:{&quot;type&quot;:&quot;line&quot;,&quot;tooltip&quot;:{&quot;content&quot;:&quot;encoding&quot;},&quot;color&quot;:&quot;crimson&quot;,&quot;width&quot;:30,&quot;point&quot;:{&quot;color&quot;:&quot;red&quot;}}}</span></p></div><h3 class="mume-header" id="movie-genres-and-market-share">Movie Genres and Market Share</h3>
+
+<p>This Donut chart shows the top ten genres within the industry since 1995. The areas covered by each genre shows their representative Market Shares.<br>
+Hovering over each of the segments allows you to see details such as the exact Market Share, Number of Movies in each genre and Total Gross revenue.</p>
+<div data-role="litvisOutput" style="display: inline;"><p interactive="true" style="display: inline-block" class="vega-lite"><span style="display: none">{&quot;$schema&quot;:&quot;https://vega.github.io/schema/vega-lite/v5.json&quot;,&quot;config&quot;:{&quot;view&quot;:{&quot;stroke&quot;:null}},&quot;data&quot;:{&quot;values&quot;:[{&quot;GENRES&quot;:&quot;Adventure&quot;,&quot;MARKET SHARE&quot;:27.14,&quot;MOVIES&quot;:1102,&quot;TOTAL GROSS&quot;:&quot;$64,529,536,530&quot;,&quot;AVERAGE GROSS&quot;:&quot;$58,556,748&quot;},{&quot;GENRES&quot;:&quot;Action&quot;,&quot;MARKET SHARE&quot;:20.75,&quot;MOVIES&quot;:1098,&quot;TOTAL GROSS&quot;:&quot;$49,339,974,493&quot;,&quot;AVERAGE GROSS&quot;:&quot;$44,936,224&quot;},{&quot;GENRES&quot;:&quot;Drama&quot;,&quot;MARKET SHARE&quot;:14.97,&quot;MOVIES&quot;:5479,&quot;TOTAL GROSS&quot;:&quot;$35,586,177,269&quot;,&quot;AVERAGE GROSS&quot;:&quot;$6,495,013&quot;},{&quot;GENRES&quot;:&quot;Comedy&quot;,&quot;MARKET SHARE&quot;:14.17,&quot;MOVIES&quot;:2418,&quot;TOTAL GROSS&quot;:&quot;$33,687,992,318&quot;,&quot;AVERAGE GROSS&quot;:&quot;$13,932,172&quot;},{&quot;GENRES&quot;:&quot;Thriller/Suspense&quot;,&quot;MARKET SHARE&quot;:8.33,&quot;MOVIES&quot;:1186,&quot;TOTAL GROSS&quot;:&quot;$19,810,201,102&quot;,&quot;AVERAGE GROSS&quot;:&quot;$16,703,374&quot;},{&quot;GENRES&quot;:&quot;Horror&quot;,&quot;MARKET SHARE&quot;:5.65,&quot;MOVIES&quot;:716,&quot;TOTAL GROSS&quot;:&quot;$13,430,378,699&quot;,&quot;AVERAGE GROSS&quot;:&quot;$18,757,512&quot;},{&quot;GENRES&quot;:&quot;Romantic Comedy&quot;,&quot;MARKET SHARE&quot;:4.41,&quot;MOVIES&quot;:630,&quot;TOTAL GROSS&quot;:&quot;$10,480,124,374&quot;,&quot;AVERAGE GROSS&quot;:&quot;$16,635,118&quot;},{&quot;GENRES&quot;:&quot;Musical&quot;,&quot;MARKET SHARE&quot;:1.81,&quot;MOVIES&quot;:201,&quot;TOTAL GROSS&quot;:&quot;$4,293,988,317&quot;,&quot;AVERAGE GROSS&quot;:&quot;$21,363,126&quot;},{&quot;GENRES&quot;:&quot;Documentary&quot;,&quot;MARKET SHARE&quot;:1.06,&quot;MOVIES&quot;:2415,&quot;TOTAL GROSS&quot;:&quot;$2,519,513,142&quot;,&quot;AVERAGE GROSS&quot;:&quot;$1,043,277&quot;},{&quot;GENRES&quot;:&quot;Black Comedy&quot;,&quot;MARKET SHARE&quot;:0.92,&quot;MOVIES&quot;:213,&quot;TOTAL GROSS&quot;:&quot;$2,185,433,323&quot;,&quot;AVERAGE GROSS&quot;:&quot;$10,260,250&quot;}]},&quot;encoding&quot;:{&quot;theta&quot;:{&quot;field&quot;:&quot;MARKET SHARE&quot;,&quot;type&quot;:&quot;quantitative&quot;},&quot;color&quot;:{&quot;field&quot;:&quot;GENRES&quot;},&quot;tooltip&quot;:[{&quot;field&quot;:&quot;GENRES&quot;,&quot;title&quot;:&quot;Genre&quot;},{&quot;field&quot;:&quot;MARKET SHARE&quot;,&quot;title&quot;:&quot;Market Share&quot;},{&quot;field&quot;:&quot;MOVIES&quot;,&quot;title&quot;:&quot;Number of Movies&quot;},{&quot;field&quot;:&quot;TOTAL GROSS&quot;,&quot;title&quot;:&quot;Total Gross&quot;}]},&quot;mark&quot;:{&quot;type&quot;:&quot;arc&quot;,&quot;outerRadius&quot;:400,&quot;innerRadius&quot;:230}}</span></p></div><h3 class="mume-header" id="movie-genres-and-gross-earnings">Movie Genres and Gross Earnings</h3>
+
+<p>This Bar chart once again shows the top ten genres within the industry. It details the relationshiop between each genre and their Total Gross revenue.<br>
+Hovering over each of the segments allows you to see details such as the exact Market Share, Number of Movies in each genre, Total Gross revenue and Average Gross revenue.</p>
+<div data-role="litvisOutput" style="display: inline;"><p interactive="true" style="display: inline-block" class="vega-lite"><span style="display: none">{&quot;$schema&quot;:&quot;https://vega.github.io/schema/vega-lite/v5.json&quot;,&quot;width&quot;:640,&quot;data&quot;:{&quot;url&quot;:&quot;https://zahiruddin13.github.io/webData/TopGenres1.csv&quot;},&quot;encoding&quot;:{&quot;x&quot;:{&quot;field&quot;:&quot;GENRES&quot;,&quot;type&quot;:&quot;nominal&quot;},&quot;y&quot;:{&quot;field&quot;:&quot;TOTAL GROSS&quot;,&quot;type&quot;:&quot;quantitative&quot;},&quot;tooltip&quot;:[{&quot;field&quot;:&quot;GENRES&quot;,&quot;title&quot;:&quot;Genre&quot;},{&quot;field&quot;:&quot;MARKET SHARE&quot;,&quot;title&quot;:&quot;Market Share (%)&quot;},{&quot;field&quot;:&quot;MOVIES&quot;,&quot;title&quot;:&quot;Number of Movies&quot;},{&quot;field&quot;:&quot;TOTAL GROSS&quot;,&quot;title&quot;:&quot;Total Gross ($)&quot;},{&quot;field&quot;:&quot;AVERAGE GROSS&quot;,&quot;title&quot;:&quot;Average Gross ($)&quot;}]},&quot;mark&quot;:{&quot;type&quot;:&quot;bar&quot;,&quot;tooltip&quot;:{&quot;content&quot;:&quot;encoding&quot;},&quot;color&quot;:&quot;green&quot;,&quot;width&quot;:30}}</span></p></div>
+      </div>
+      
+      
+    
+    
+    
+    
+    <script>
+      var vegaEls = document.querySelectorAll('.vega, .vega-lite');
+      function reportVegaError(el, error) {
+        el.innerHTML = '<pre class="language-text">' + error.toString() + '</pre>'
+      }
+      for (var i = 0; i < vegaEls.length; i++) {
+        const vegaEl = vegaEls[i]
+        try {
+          var spec = JSON.parse(vegaEl.textContent);
+          vegaEmbed(vegaEl, spec, { actions: false, renderer: 'svg' })
+          .catch(function(error) {
+            reportVegaError(vegaEl, error);
+          })
+        } catch (error) {
+          reportVegaError(vegaEl, error);
+        }
+      }
+      </script>
+    
+    
+    
+  
+    </body></html>
