@@ -42,4 +42,10 @@ ticketSales1 =
         ]
 ```
 
-###
+### Movie Genres and Market Share
+
+```elm {l=hidden}
+genreData : Data
+genreData =
+    dataFromUrl "https://zahiruddin13.github.io/webData/TopGenres.csv" []
+```
