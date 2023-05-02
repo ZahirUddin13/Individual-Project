@@ -16,7 +16,7 @@ import VegaLite exposing (..)
 ---Imported Libraries---
 ```
 
-# The use of Data Visualisation to analyse Hollywood ticket sales and movie gentres to determine trends and movie popularity
+# The use of Data Visualisation to analyse Hollywood ticket sales and movie genres to determine trends and movie popularity
 
 #### Overview
 
